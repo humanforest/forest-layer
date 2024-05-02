@@ -18,7 +18,7 @@ const openImage = ref(false)
 </script>
 
 <template>
-  <div class="aspect-h-9 aspect-w-16 rounded-md">
+  <div class="rounded-md" :class="wrapperClass">
     <NuxtImg
       :src="src"
       :alt="alt"
