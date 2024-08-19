@@ -42,7 +42,7 @@ export default defineAppConfig({
       title: 'text-sm font-bold',
     },
     tooltip: {
-      popper: { strategy: 'absolute' },
+      popper: { strategy: 'fixed' },
     },
     selectMenu: {
       width: 'max-w-max min-w-max',
