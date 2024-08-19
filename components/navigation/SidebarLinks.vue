@@ -218,7 +218,7 @@ const config = computed(() => ({
     'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50',
   static: 'text-gray-900 dark:text-white cursor-auto',
   icon: {
-    base: 'flex-shrink-0 size-6',
+    base: 'flex-shrink-0 size-5',
     active: 'text-white',
     inactive:
       'text-gray-400 dark:text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-200',
