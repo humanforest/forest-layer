@@ -238,7 +238,7 @@ const config = computed(() => ({
     size: 'sm' as const,
   },
   badge: {
-    base: 'flex-shrink-0 ml-auto relative rounded-full',
+    base: 'flex-shrink-0 ml-auto relative rounded',
     color: 'gray' as const,
     variant: 'solid' as const,
     size: 'xs' as const,
