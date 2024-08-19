@@ -133,30 +133,32 @@
                 </span>
               </slot>
 
-              <UIcon
-                v-if="link.children?.length && link.collapsible !== false"
-                :name="ui.trailingIcon.name"
-                :class="[
-                  ui.trailingIcon.base,
-                  open ? ui.trailingIcon.active : ui.trailingIcon.inactive,
-                ]"
-              />
+              <div class="ml-auto flex items-center gap-2">
+                <slot name="badge" :link="link" :is-active="isActive">
+                  <UBadge
+                    v-if="link.badge"
+                    v-bind="{
+                      size: ui.badge.size,
+                      color: ui.badge.color,
+                      variant: ui.badge.variant,
+                      ...(typeof link.badge === 'string' ||
+                      typeof link.badge === 'number'
+                        ? { label: link.badge }
+                        : link.badge),
+                    }"
+                    :class="ui.badge.base"
+                  />
+                </slot>
 
-              <slot name="badge" :link="link" :is-active="isActive">
-                <UBadge
-                  v-if="link.badge"
-                  v-bind="{
-                    size: ui.badge.size,
-                    color: ui.badge.color,
-                    variant: ui.badge.variant,
-                    ...(typeof link.badge === 'string' ||
-                    typeof link.badge === 'number'
-                      ? { label: link.badge }
-                      : link.badge),
-                  }"
-                  :class="ui.badge.base"
+                <UIcon
+                  v-if="link.children?.length && link.collapsible !== false"
+                  :name="ui.trailingIcon.name"
+                  :class="[
+                    ui.trailingIcon.base,
+                    open ? ui.trailingIcon.active : ui.trailingIcon.inactive,
+                  ]"
                 />
-              </slot>
+              </div>
             </ULink>
           </UTooltip>
         </DisclosureButton>
@@ -236,7 +238,7 @@ const config = computed(() => ({
     size: 'sm' as const,
   },
   badge: {
-    base: 'flex-shrink-0 ml-auto relative rounded',
+    base: 'flex-shrink-0 ml-auto relative rounded-full',
     color: 'gray' as const,
     variant: 'solid' as const,
     size: 'xs' as const,
