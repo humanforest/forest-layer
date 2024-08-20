@@ -1,11 +1,23 @@
 <script setup lang="ts">
 const props = defineProps({
   links: {
-    type: Array,
+    type: Array as PropType<
+      {
+        to: string
+        label: string
+        hide: boolean
+        icon?: string
+        mobileLabel?: string
+        onClick?: () => void
+      }[]
+    >,
     required: true,
   },
 })
-const cols = computed(() => `grid-cols-${props.links?.length}`)
+const cols = computed(
+  () =>
+    `grid-cols-${props.links.map((link) => (link.hide ? 0 : 1)).reduce((a, b) => a + b, 0)}`,
+)
 </script>
 
 <template>
@@ -17,21 +29,22 @@ const cols = computed(() => `grid-cols-${props.links?.length}`)
         class="mx-auto grid h-full content-stretch divide-x divide-gray-200 font-medium dark:divide-gray-700"
         :class="cols"
       >
-        <ULink
-          v-for="(link, index) of links"
-          :key="index"
-          square
-          active-class="text-primary items-center font-bold"
-          inactive-class="flex items-center"
-          :to="link.to"
-          exact
-          class="flex flex-col items-center justify-center text-sm text-gray-500"
-          :active="$route.path.startsWith(link.to)"
-          @click="link.onClick"
-        >
-          <UIcon v-if="link.icon" :name="link.icon" class="size-6 shrink-0" />
-          {{ link.mobileLabel ?? link.label }}
-        </ULink>
+        <template v-for="(link, index) of links" :key="index">
+          <ULink
+            v-if="!link.hide"
+            square
+            active-class="text-primary items-center font-bold"
+            inactive-class="flex items-center"
+            :to="link.to"
+            exact
+            class="flex flex-col items-center justify-center text-sm text-gray-500"
+            :active="$route.path.startsWith(link.to)"
+            @click="link.onClick"
+          >
+            <UIcon v-if="link.icon" :name="link.icon" class="size-6 shrink-0" />
+            {{ link.mobileLabel ?? link.label }}
+          </ULink>
+        </template>
       </div>
     </div>
   </div>
