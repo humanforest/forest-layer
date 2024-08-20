@@ -26,7 +26,6 @@
       :class="ui.container"
     >
       <Disclosure
-        v-if="!link.hide"
         v-slot="{ open }"
         :default-open="link.defaultOpen === undefined ? true : link.defaultOpen"
         as="div"
@@ -298,6 +297,8 @@ const props = defineProps({
     default: () => ({}),
   },
 })
+
+const links = props.links.filter((l) => !l.hide)
 
 const emit = defineEmits(['update:links'])
 
