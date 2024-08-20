@@ -8,6 +8,10 @@ defineProps({
     type: String,
     required: true,
   },
+  last: {
+    type: Boolean,
+    default: false,
+  },
 })
 </script>
 
@@ -32,6 +36,6 @@ defineProps({
         </div>
       </div>
     </div>
-    <UDivider />
+    <UDivider v-if="!last" />
   </div>
 </template>
