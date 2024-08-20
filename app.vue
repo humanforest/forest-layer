@@ -14,6 +14,7 @@ useHead({
         <NuxtPage />
       </div>
     </NuxtLayout>
+    <UModals />
     <UNotifications
       :ui="{
         strategy: 'override',
