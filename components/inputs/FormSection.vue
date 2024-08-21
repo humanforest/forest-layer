@@ -6,7 +6,7 @@ defineProps({
   },
   subtitle: {
     type: String,
-    required: true,
+    default: '',
   },
   last: {
     type: Boolean,
@@ -22,7 +22,10 @@ defineProps({
         <h2 class="text-base leading-7">
           {{ title }}
         </h2>
-        <p class="mt-1 text-sm leading-6 text-gray-400 dark:text-gray-500">
+        <p
+          v-if="subtitle"
+          class="mt-1 text-sm leading-6 text-gray-400 dark:text-gray-500"
+        >
           {{ subtitle }}
         </p>
         <div class="mt-4 text-sm leading-6 text-gray-500 dark:text-gray-400">
