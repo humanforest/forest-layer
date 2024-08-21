@@ -1,16 +1,9 @@
 <script setup lang="ts">
+import type { NavigationLink } from '../../types/ui'
+
 const props = defineProps({
   links: {
-    type: Array as PropType<
-      {
-        to: string
-        label: string
-        hide: boolean
-        icon?: string
-        mobileLabel?: string
-        onClick?: () => void
-      }[]
-    >,
+    type: Array as PropType<NavigationLink[]>,
     required: true,
   },
 })
@@ -39,7 +32,7 @@ const cols = computed(
             exact
             class="flex flex-col items-center justify-center text-sm text-gray-500"
             :active="$route.path.startsWith(link.to)"
-            @click="link.onClick"
+            @click="link.click"
           >
             <UIcon v-if="link.icon" :name="link.icon" class="size-6 shrink-0" />
             {{ link.mobileLabel ?? link.label }}

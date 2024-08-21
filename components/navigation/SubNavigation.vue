@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { NavigationLink } from '../../types/ui'
+
 defineProps({
   links: {
-    type: Array as PropType<{ to: string; label: string; hide: boolean }[]>,
+    type: Array as PropType<NavigationLink[]>,
     required: true,
   },
 })
