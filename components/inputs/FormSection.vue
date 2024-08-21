@@ -28,7 +28,7 @@ defineProps({
         >
           {{ subtitle }}
         </p>
-        <div class="mt-4 text-sm leading-6 text-gray-500 dark:text-gray-400">
+        <div class="mt-4 text-sm leading-6 text-gray-400 dark:text-gray-500">
           <slot name="section-description" />
         </div>
       </div>
